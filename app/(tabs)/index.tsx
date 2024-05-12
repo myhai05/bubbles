@@ -1,70 +1,53 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import React, { useState } from 'react';
+import { StyleSheet, View, Button, Dimensions } from 'react-native';
+import BubbleGame from '../../components/bubbles';
+const { width, height } = Dimensions.get('window');
 
 export default function HomeScreen() {
+  const [gameSpeed, setGameSpeed] = useState(0); // Vitesse par défaut
+
+  const goToHome = () => {
+    setGameSpeed(0);
+  };
+   
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      {gameSpeed ? (
+        <BubbleGame speed={gameSpeed} /> // Passer la vitesse du jeu comme prop
+      ) : (
+        <>
+          <View style={styles.startButtonContainer}>
+          <Button title="Expert" onPress={() => setGameSpeed(15)} />
+          </View>
+          <View style={styles.startButtonContainer}>
+          <Button title="Intermediare" onPress={() => setGameSpeed(10)} />
+          </View>
+          <View style={styles.startButtonContainer}>
+          <Button title="Débutant" onPress={() => setGameSpeed(5)} />
+          </View>
+        </>
+      )}
+      <View style={styles.homeButtonContainer}>
+        <Button title="Home" onPress={goToHome} />
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    flex: 1,
+    justifyContent: 'flex-end', // Aligne le contenu en bas de l'écran
     alignItems: 'center',
-    gap: 8,
+    paddingBottom: 20, // Ajoute un espace en bas de l'écran pour le bouton "Home"
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  startButtonContainer: {
+    marginBottom: 100,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
+  homeButtonContainer: {
     position: 'absolute',
+    bottom: 0,
+    marginBottom: 0,
+    width: width,
   },
 });
