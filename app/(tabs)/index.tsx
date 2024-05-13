@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Button, Dimensions } from 'react-native';
+import { StyleSheet, View, Button, Dimensions, Text } from 'react-native';
 import BubbleGame from '../../components/bubbles';
 const { width, height } = Dimensions.get('window');
 
@@ -9,21 +9,24 @@ export default function HomeScreen() {
   const goToHome = () => {
     setGameSpeed(0);
   };
-   
+
   return (
     <View style={styles.container}>
       {gameSpeed ? (
         <BubbleGame speed={gameSpeed} /> // Passer la vitesse du jeu comme prop
       ) : (
-        <>
+        <><View style={styles.gameTitleContainer}>
+          <Text style={styles.gameTitle}>Lance toi! </Text>
+          <Text style={styles.gameTitle}>Attention au rouge!</Text>
+        </View>
           <View style={styles.startButtonContainer}>
-          <Button title="Expert" onPress={() => setGameSpeed(15)} />
+            <Button title="Expert" onPress={() => setGameSpeed(15)} />
           </View>
           <View style={styles.startButtonContainer}>
-          <Button title="Intermediare" onPress={() => setGameSpeed(10)} />
+            <Button title="Intermediare" onPress={() => setGameSpeed(10)} />
           </View>
           <View style={styles.startButtonContainer}>
-          <Button title="Débutant" onPress={() => setGameSpeed(5)} />
+            <Button title="Débutant" onPress={() => setGameSpeed(5)} />
           </View>
         </>
       )}
@@ -43,6 +46,16 @@ const styles = StyleSheet.create({
   },
   startButtonContainer: {
     marginBottom: 100,
+    backgroundColor: "red",
+    borderRadius:50,
+  },
+  gameTitleContainer: {
+     marginBottom:50,
+  },
+  gameTitle: {
+     fontSize: 35,
+     textAlign: "center",
+     fontWeight:"bold",
   },
   homeButtonContainer: {
     position: 'absolute',

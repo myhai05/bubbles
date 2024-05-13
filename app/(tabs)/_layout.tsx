@@ -13,10 +13,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Ecrase les bulles',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+          title: '',
+          
         }}
       />
     </Tabs>

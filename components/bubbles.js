@@ -47,7 +47,7 @@ const BubbleGame = ({ speed }) => {
 
   useEffect(() => {
     if (!gameOver && !gameWon) {
-      const colors = ['red', 'blue', 'green']; // Tableau de couleurs
+      const colors = ['red', 'orange', 'green']; // Tableau de couleurs
       const intervalId = setInterval(() => {
         const randomIndex = Math.floor(Math.random() * colors.length); // Index aléatoire dans le tableau
         const color = colors[randomIndex]; // Sélection de la couleur en fonction de l'index
@@ -100,7 +100,8 @@ const BubbleGame = ({ speed }) => {
         </View>
       ) : gameWon ? (
         <View style={styles.gameWonContainer}>
-          <Text style={styles.gameWonText}>Wow! T'es vraiment fort!!!</Text>
+          <Text style={styles.gameWonText}>Wow! Quelle course!!!</Text>
+          <Text style={styles.gameWonText}>Score :{crushedBubbles}</Text>
         </View>
       ) : (
         <>
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
   container: {
     width: 400,
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#D4D6CC',
   },
   bubble: {
     position: 'absolute',
@@ -165,9 +166,10 @@ const styles = StyleSheet.create({
   gameWonContainer: {
     position: 'absolute',
     top: 100,
-    left: 100,
+    left: 50,
     padding: 10,
     borderRadius: 10,
+    fontWeight: "bold",
   },
   gameOverContainer: {
     position: 'absolute',
@@ -184,6 +186,13 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: 'center',
     marginTop: '50%',
+    fontWeight: "bold",
+  },
+  gameWonText: {
+    fontSize: 25,
+    textAlign: 'center',
+    marginTop: '50%',
+    fontWeight: "bold",
   },
 });
 
