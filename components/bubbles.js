@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   container: {
     width: 400,
     flex: 1,
-    backgroundColor: '#D4D6CC',
+    backgroundColor: '#E6E8DB',
   },
   bubble: {
     position: 'absolute',

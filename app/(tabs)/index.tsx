@@ -45,17 +45,17 @@ const styles = StyleSheet.create({
     paddingBottom: 20, // Ajoute un espace en bas de l'écran pour le bouton "Home"
   },
   startButtonContainer: {
-    marginBottom: 100,
+    marginBottom: 70,
     backgroundColor: "red",
-    borderRadius:50,
+    borderRadius: 50,
   },
   gameTitleContainer: {
-     marginBottom:50,
+    marginBottom: 50,
   },
   gameTitle: {
-     fontSize: 35,
-     textAlign: "center",
-     fontWeight:"bold",
+    fontSize: 35,
+    textAlign: "center",
+    fontWeight: "bold",
   },
   homeButtonContainer: {
     position: 'absolute',
